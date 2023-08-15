@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.Common;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.CreateNews;
@@ -13,6 +14,7 @@ public class NewsController : ControllerBase
     public NewsController(IMediator mediator)
         => _mediator = mediator;
 
+    [Authorize(Roles = "PostEditor")]
     [HttpPost]
     [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
