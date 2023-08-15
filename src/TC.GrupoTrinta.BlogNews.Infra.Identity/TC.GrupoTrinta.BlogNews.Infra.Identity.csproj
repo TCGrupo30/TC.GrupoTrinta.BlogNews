@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TC.GrupoTrinta.BlogNews.Application\TC.GrupoTrinta.BlogNews.Application.csproj" />
+    <ProjectReference Include="..\TC.GrupoTrinta.BlogNews.Domain\TC.GrupoTrinta.BlogNews.Domain.csproj" />
+    <ProjectReference Include="..\TC.GrupoTrinta.BlogNews.Infra.Data.EF\TC.GrupoTrinta.BlogNews.Infra.Data.EF.csproj" />
+  </ItemGroup>
+
+</Project>
