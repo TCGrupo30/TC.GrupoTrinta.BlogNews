@@ -1,12 +1,14 @@
 using TC.GrupoTrinta.BlogNews.Api.Configurations;
+using TC.GrupoTrinta.BlogNews.Infra.Data.EF.Configurations;
 using TC.GrupoTrinta.BlogNews.Infra.Identity;
 using TC.GrupoTrinta.BlogNews.Infra.Identity.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services
-    .AddAppConections()
+    .AddAppConections(builder.Configuration)
     .AddUseCases()
     .AddAndConfigureControllers();
 
