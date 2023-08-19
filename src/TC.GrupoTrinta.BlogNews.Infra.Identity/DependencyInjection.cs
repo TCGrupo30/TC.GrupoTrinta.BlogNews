@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using TC.GrupoTrinta.BlogNews.Application.Interfaces;
+using TC.GrupoTrinta.BlogNews.Infra.Data.EF;
 using TC.GrupoTrinta.BlogNews.Infra.Identity.Context;
 using TC.GrupoTrinta.BlogNews.Infra.Identity.Seed;
 
@@ -17,12 +18,30 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<AppIdentityDbContext>(
-            options =>
-            {
-                options.UseInMemoryDatabase("InMemory-DSV-Database");
-                options.LogTo(Console.WriteLine, LogLevel.Information);
-            });
+
+        bool useOnlyInMemoryDatabase = false;
+
+        if (configuration["UseOnlyInMemoryDatabase"] != null)
+        {
+            useOnlyInMemoryDatabase = bool.Parse(configuration["UseOnlyInMemoryDatabase"]!);
+        }
+
+        if (useOnlyInMemoryDatabase)
+        {
+            services.AddDbContext<AppIdentityDbContext>(
+                options =>
+                {
+                    options.UseInMemoryDatabase("InMemory-DSV-Database");
+                    options.LogTo(Console.WriteLine, LogLevel.Information);
+                });
+        }
+        else
+        {
+            services.AddDbContext<AppIdentityDbContext>(c =>
+            c.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
+        }
+
+
 
         services.AddIdentity<ApplicationUser, IdentityRole<long>>()
             .AddEntityFrameworkStores<AppIdentityDbContext>()
