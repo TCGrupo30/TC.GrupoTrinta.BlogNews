@@ -1,4 +1,6 @@
-﻿namespace TC.GrupoTrinta.BlogNews.Api.Configurations;
+﻿using Microsoft.OpenApi.Models;
+
+namespace TC.GrupoTrinta.BlogNews.Api.Configurations;
 
 public static class ControllersConfiguration
 {
@@ -16,7 +18,11 @@ public static class ControllersConfiguration
     )
     {
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tech Challenge", Version = "v1" });
+            c.UseAllOfToExtendReferenceSchemas();
+        });
         return services;
     }
 
@@ -24,6 +30,7 @@ public static class ControllersConfiguration
         this WebApplication app
     )
     {
+        
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

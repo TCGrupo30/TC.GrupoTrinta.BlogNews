@@ -36,4 +36,10 @@ public class NewsModelOutput
             news.PublicationDate,
             news.CreateAt
         );
+
+    public static List<NewsModelOutput> FromNewsList(List<DomainEntity.News> news)
+    {
+        var listNews = new List<NewsModelOutput>();
+        return listNews = news.Select(x => FromNews(x)).ToList();
+    }
 }
