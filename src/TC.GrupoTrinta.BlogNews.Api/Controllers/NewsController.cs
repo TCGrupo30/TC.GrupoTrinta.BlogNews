@@ -1,11 +1,11 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.Common;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.CreateNews;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.GetNews;
 
 namespace TC.GrupoTrinta.BlogNews.Api.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class NewsController : ControllerBase
@@ -15,7 +15,6 @@ public class NewsController : ControllerBase
     public NewsController(IMediator mediator)
         => _mediator = mediator;
 
-    [Authorize(Roles = "PostEditor")]
     [HttpPost]
     [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -33,7 +32,6 @@ public class NewsController : ControllerBase
         );
     }
 
-    [Authorize(Roles = "PostEditor")]
     [HttpGet("GetById")]
     [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -47,7 +45,6 @@ public class NewsController : ControllerBase
         return Ok(result);
     }
 
-    [Authorize(Roles = "PostEditor")]
     [HttpGet("GetAll")]
     [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

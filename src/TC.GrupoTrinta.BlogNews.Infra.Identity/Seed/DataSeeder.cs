@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using TC.GrupoTrinta.BlogNews.Infra.Identity.Context;
 
 namespace TC.GrupoTrinta.BlogNews.Infra.Identity.Seed;
 

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading;
 using TC.GrupoTrinta.BlogNews.Domain.Entity;
 using TC.GrupoTrinta.BlogNews.Domain.Repository;
 
