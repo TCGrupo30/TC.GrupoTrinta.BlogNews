@@ -31,7 +31,7 @@ public class NewsModelOutput
         => new(
             news.Id,
             news.Title,
-            news.Description,
+            news.Content,
             news.Author,
             news.PublicationDate,
             news.CreateAt
