@@ -1,5 +1,4 @@
-﻿using MediatR;
-using TC.GrupoTrinta.BlogNews.Application.Interfaces;
+﻿using TC.GrupoTrinta.BlogNews.Application.Interfaces;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.CreateNews;
 using TC.GrupoTrinta.BlogNews.Domain.Repository;
 using TC.GrupoTrinta.BlogNews.Infra.Data.EF;
@@ -13,7 +12,10 @@ public static class UseCasesConfiguration
         this IServiceCollection services
     )
     {
-        services.AddMediatR(typeof(CreateNews));
+        services.AddMediatR(cfg => {
+            cfg.RegisterServicesFromAssemblyContaining<CreateNews>();
+        });
+
         services.AddRepositories();
         return services;
     }

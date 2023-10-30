@@ -1,10 +1,11 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.Common;
 using TC.GrupoTrinta.BlogNews.Application.UseCases.News.CreateNews;
+using TC.GrupoTrinta.BlogNews.Application.UseCases.News.GetNews;
 
 namespace TC.GrupoTrinta.BlogNews.Api.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class NewsController : ControllerBase
@@ -14,7 +15,6 @@ public class NewsController : ControllerBase
     public NewsController(IMediator mediator)
         => _mediator = mediator;
 
-    [Authorize(Roles = "PostEditor")]
     [HttpPost]
     [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -30,6 +30,31 @@ public class NewsController : ControllerBase
             new { output.Id },
             output
         );
+    }
+
+    [HttpGet("GetById")]
+    [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status422UnprocessableEntity)]
+    public IActionResult GetById(
+    [FromQuery] GetByIdNewsInput command,
+    CancellationToken cancellationToken
+    )
+    {
+        var result = _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpGet("GetAll")]
+    [ProducesResponseType(typeof(NewsModelOutput), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status422UnprocessableEntity)]
+    public IActionResult GetAll(   
+    CancellationToken cancellationToken
+    )
+    {
+        var result = _mediator.Send(new GetAllNewsInput(), cancellationToken);
+        return Ok(result);
     }
 
 }

@@ -15,5 +15,10 @@ public class NewsRepository : INewsRepository
 
     public async Task Insert(News aggregate, CancellationToken cancellationToken) 
         => await _news.AddAsync(aggregate,cancellationToken);
-    
+
+    public async Task<News> GetById(Guid id, CancellationToken cancellationToken)
+        => await _news.FindAsync(id, cancellationToken);
+
+    public async Task<List<News>> GetAll(CancellationToken cancellationToken)
+    => await _news.ToListAsync<News>(cancellationToken);
 }

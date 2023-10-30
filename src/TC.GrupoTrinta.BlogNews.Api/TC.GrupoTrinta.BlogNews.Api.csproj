@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TC.GrupoTrinta.BlogNews.Application\TC.GrupoTrinta.BlogNews.Application.csproj" />
     <ProjectReference Include="..\TC.GrupoTrinta.BlogNews.Infra.Data.EF\TC.GrupoTrinta.BlogNews.Infra.Data.EF.csproj" />
-    <ProjectReference Include="..\TC.GrupoTrinta.BlogNews.Infra.Identity\TC.GrupoTrinta.BlogNews.Infra.Identity.csproj" />
   </ItemGroup>
 
 </Project>
