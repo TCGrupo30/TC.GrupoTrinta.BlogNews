@@ -8,8 +8,6 @@ builder.Services
     .AddAndConfigureControllers();
 
 builder.Services.AddApplicationInsightsTelemetry();
-
-builder.Services.AddIdentity(builder.Configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 const string CORS_POLICY = "CorsPolicy";
