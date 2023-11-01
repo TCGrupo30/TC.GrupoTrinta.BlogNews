@@ -41,8 +41,8 @@ public class NewsController : ControllerBase
     CancellationToken cancellationToken
     )
     {
-        var result = _mediator.Send(command, cancellationToken);
-        return Ok(result);
+        var result =  _mediator.Send(command, cancellationToken);
+        return Ok(result.Result);
     }
 
     [HttpGet("GetAll")]
@@ -53,8 +53,8 @@ public class NewsController : ControllerBase
     CancellationToken cancellationToken
     )
     {
-        var result = _mediator.Send(new GetAllNewsInput(), cancellationToken);
-        return Ok(result);
+        var result =  _mediator.Send(new GetAllNewsInput(), cancellationToken);
+        return Ok(result.Result);
     }
 
 }

@@ -9,6 +9,7 @@ public class CreateNewsInput : IRequest<NewsModelOutput>
     public string Author { get; set; }
     public DateTime PublicationDate { get; set; }
 
+    public CreateNewsInput() { }
     public CreateNewsInput(
         string title,
         string description,
