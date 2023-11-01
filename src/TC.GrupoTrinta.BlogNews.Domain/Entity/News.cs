@@ -30,7 +30,7 @@ public class News : AggregateRoot
         DomainExceptionValidation.When(string.IsNullOrEmpty(Content), "O conteúdo da notícia deve ser preenchido");
         DomainExceptionValidation.When(string.IsNullOrEmpty(Author), "É necessário fornecer informações sobre o autor da notícia");
 
-        DomainExceptionValidation.When(PublicationDate >= DateTime.Now, "A data de publicação deve ser igual ou posterior à data atual");
+        DomainExceptionValidation.When(PublicationDate <= DateTime.Now, "A data de publicação deve ser igual ou posterior à data atual");
 
     }
 }
