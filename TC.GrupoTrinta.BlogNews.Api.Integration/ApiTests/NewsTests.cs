@@ -25,7 +25,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Integration.ApiTests
                 Title = "Title",
                 Description = "Description",
                 Author = "Author",
-                PublicationDate = DateTime.Now.AddDays(1)
+                PublicationDate = DateTime.Now.AddDays(-1)
             };
             var payloadJson = JsonConvert.SerializeObject(payload);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, "News");
