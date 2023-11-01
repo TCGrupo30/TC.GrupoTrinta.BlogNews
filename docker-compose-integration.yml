@@ -1,0 +1,19 @@
+﻿version: '3'
+
+services:
+  integration:
+    build: 
+      context: .
+      dockerfile: Dockerfile.integration
+    environment:
+      - API_URL=http://localhost:5000
+    entrypoint: dotnet test
+    depends_on:
+      - api
+  api:
+    build: .
+    ports: 
+      - 8000:5000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    entrypoint: dotnet /app/src/TC.GrupoTrinta.BlogNews.Api.Tests.dll
