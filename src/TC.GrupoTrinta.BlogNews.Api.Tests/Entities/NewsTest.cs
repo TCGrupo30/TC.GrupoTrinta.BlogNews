@@ -17,7 +17,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Tests.Entities
             _newsTestFixture = newsTestFixture;
         }
 
-        [Theory(DisplayName = "Avalie se as propriedades da classe operam corretamente para definir e recuperar valores")]
+        [Theory(DisplayName = "Avalia se as propriedades da classe operam corretamente para definir e recuperar valores")]
         [Trait("News", "Validando operações")]
         [InlineData("Faculdade Fiap", "Faculdade de Tecnologia", "Grupo Trinta")]
         public void NewsProperties_SetAndGetProperties_WorkAsExpected(string title, string content, string author)
