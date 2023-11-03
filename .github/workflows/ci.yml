@@ -64,3 +64,11 @@ jobs:
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
             name: aci-sampleapp
             location: 'west us'
+            
+        - name: Build and deploy Container App
+          uses: azure/container-apps-deploy-action@v1
+          with:
+            acrName: acrgrupotrinta
+            containerAppName: grupotrinta-container
+            resourceGroup: grupotrinta-fiap
+            imageToDeploy: acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}
