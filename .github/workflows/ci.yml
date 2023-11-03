@@ -52,23 +52,9 @@ jobs:
         - run: |
             docker build . -t acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}
             docker push acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}
-
-        - name: 'Deploy to Azure Container Instances'
-          uses: 'azure/aci-deploy@v1'
-          with:
-            resource-group: ${{ secrets.RESOURCE_GROUP }}
-            dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-            image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-            registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-            registry-username: ${{ secrets.REGISTRY_USERNAME }}
-            registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            name: aci-sampleapp
-            location: 'west us'
             
-        - name: Build and deploy Container App
-          uses: azure/container-apps-deploy-action@v1
+        - uses: azure/webapps-deploy@v2
           with:
-            acrName: acrgrupotrinta
-            containerAppName: grupotrinta-container
-            resourceGroup: grupotrinta-fiap
-            imageToDeploy: acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}
+            app-name: 'grupotrinta-webapp'
+            publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+            images: 'acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}'
