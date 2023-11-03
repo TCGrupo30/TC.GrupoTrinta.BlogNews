@@ -27,13 +27,13 @@ COPY --from=build /publish ./
 # ENV ASPNETCORE_URLS="http://*:5000"
 
 # Expose ports
-# EXPOSE 80
-# EXPOSE 443
-# EXPOSE 5000
+EXPOSE 80
+EXPOSE 443
+EXPOSE 5000
 
 
 # Setup your variables before running.
-# ARG Development
-# ENV ASPNETCORE_ENVENTRYPOINT $Development
+ARG Development
+ENV ASPNETCORE_ENVENTRYPOINT $Development
 
 ENTRYPOINT ["dotnet", "TC.GrupoTrinta.BlogNews.Api.dll"]
