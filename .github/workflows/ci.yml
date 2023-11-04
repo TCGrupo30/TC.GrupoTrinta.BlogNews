@@ -50,11 +50,11 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}
-            docker push acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}
+            docker build . -t acrgrupotrinta.azurecr.io/blognews:v1:${{ github.sha }}
+            docker push acrgrupotrinta.azurecr.io/blognews:v1:${{ github.sha }}
             
         - uses: azure/webapps-deploy@v2
           with:
             app-name: 'grupotrinta-fiap'
             publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-            images: 'acrgrupotrinta.azurecr.io/sampleapp:${{ github.sha }}'
+            images: 'acrgrupotrinta.azurecr.io/blognews:v1:${{ github.sha }}'

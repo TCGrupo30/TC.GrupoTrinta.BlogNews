@@ -24,11 +24,11 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
 COPY --from=build /publish ./
 
-ENV ASPNETCORE_URLS="http://*:5000"
+# ENV ASPNETCORE_URLS="http://*:5000"
 
 # Expose ports
-#EXPOSE 80
-#EXPOSE 443
+EXPOSE 80
+EXPOSE 443
 #EXPOSE 5000
 
 
