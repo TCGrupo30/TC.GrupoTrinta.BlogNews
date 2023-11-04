@@ -12,13 +12,9 @@ on:
 jobs:
   web-deploy:
         runs-on: ubuntu-latest
-        environment: Development
-        
         steps:
         # checkout the repo
         - name: 'Checkout GitHub Action'
-          env:
-            ASPNETCORE_ENVIRONMENT: Development
           uses: actions/checkout@main
           
         - name: 'Login via Azure CLI'
@@ -42,4 +38,6 @@ jobs:
             app-name: 'grupotrinta-fiap'
             publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
             images: 'acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}'
-            tags: v1
+            environment: Development
+            tags: v2
+            
