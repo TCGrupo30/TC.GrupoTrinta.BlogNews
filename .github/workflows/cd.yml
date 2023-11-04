@@ -6,12 +6,8 @@ name: CD BlogNews API
 on:
   push:
     branches: [ "master", "ci" ]
-    paths: 
-      - 'appsettings.Development.json' 
   pull_request:
     branches: [ "master" ]
-    paths: 
-      - 'appsettings.Development.json' 
 
 jobs:
   web-deploy:
