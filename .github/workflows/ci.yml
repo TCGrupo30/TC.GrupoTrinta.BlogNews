@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+    AZUREPS_HOST_ENVIRONMENT: Development
+    DOTNET_VERSION: V2
+
 jobs:
   build:
 
