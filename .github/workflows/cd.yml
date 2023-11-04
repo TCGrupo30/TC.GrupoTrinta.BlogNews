@@ -1,0 +1,45 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: CI do Tech Challenge BlogNews
+
+on:
+  push:
+    branches: [ "master", "ci" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  web-deploy:
+        runs-on: ubuntu-latest
+        environment: Development
+        
+        steps:
+        # checkout the repo
+        - name: 'Checkout GitHub Action'
+          env:
+            ASPNETCORE_ENVIRONMENT: Development
+          uses: actions/checkout@main
+          
+        - name: 'Login via Azure CLI'
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+        - name: 'Build and push image'
+          uses: azure/docker-login@v1
+          with:
+            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+            tags: v1
+        - run: |
+            docker build . -t acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}
+            docker push acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}
+            
+        - uses: azure/webapps-deploy@v2
+          with:
+            app-name: 'grupotrinta-fiap'
+            publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+            images: 'acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}'
+            tags: v1
