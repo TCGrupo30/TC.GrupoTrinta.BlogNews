@@ -9,15 +9,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
-env:
-    AZUREPS_HOST_ENVIRONMENT: Development
-    DOTNET_VERSION: V2
-
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: Development
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
 
     steps:
     - uses: actions/checkout@v3
@@ -64,4 +61,5 @@ jobs:
             app-name: 'grupotrinta-fiap'
             publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
             images: 'acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}'
+            configuration-file: 'appsettings.Development.json'
 
