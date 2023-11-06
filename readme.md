@@ -2,12 +2,12 @@
 
 
 ## Architecture
----
+
 
 ![Architecture](Docs/Architecture.jpg)
 
 ## Techical Stack
----
+
 - ASP.NET Core 6.0 (with .NET 7.0)
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
@@ -22,7 +22,7 @@
 - Fixture
 
 ## Design Patterns
----
+
 - Domain Driven Design
 - CQRS
 - Unit Of Work
@@ -35,7 +35,7 @@
 
 
 ## How to run
----
+
 
 - For Visual Studio: `Select profile > Run (F5)`
 - For VSCode: `Select configuration > Run (F5)`
@@ -48,11 +48,11 @@ dotnet watch --project src\TC.GrupoTrinta.BlogNews.Api\TC.GrupoTrinta.BlogNews.A
 ```
 
 ### Testing
----
+
 - Terminal: `dotnet test`
 
 ### Docker
----
+
 ```Docker
 
 docker build -t blognews-docker-image .
@@ -62,25 +62,25 @@ docker run -dp 3000:80 --env ASPNETCORE_ENVIRONMENT=Development --name blognews-
 
 
 ###  Docker Compose
----
+
 ```Docker
 
 docker-compose -f docker-compose-integration.yml up
 ```
 
 ## Swagger (Dev env only)
----
+
 
 - http://localhost:3000/swagger/index.html
 
 ## Swagger (Publish Azure - Web App Service)
----
+
 
 - https://grupotrinta-fiap.azurewebsites.net/swagger/index.html
 
 
 ## Use the [Install-Module](https://learn.microsoft.com/pt-br/powershell/module/powershellget/install-module) cmdlet to install the PowerShell Az module:
----
+
 
 ```PowerShell
 
@@ -95,7 +95,7 @@ Connect-AzAccount
 ```
 
 ### Create image (Azure Container Registry - CLI)
----
+
 
 ```Azure
 
