@@ -10,6 +10,7 @@ COPY src/TC.GrupoTrinta.BlogNews.Domain/*.csproj ./src/TC.GrupoTrinta.BlogNews.D
 COPY src/TC.GrupoTrinta.BlogNews.Infra.Data.EF/*.csproj ./src/TC.GrupoTrinta.BlogNews.Infra.Data.EF/
 COPY src/TC.GrupoTrinta.BlogNews.Infra.Identity/*.csproj ./src/TC.GrupoTrinta.BlogNews.Infra.Identity/
 COPY src/TC.GrupoTrinta.BlogNews.Api.Tests/*.csproj ./src/TC.GrupoTrinta.BlogNews.Api.Tests/
+COPY TC.GrupoTrinta.BlogNews.Api.Integration/*.csproj ./src/TC.GrupoTrinta.BlogNews.Api.Integration/
 
 
 RUN dotnet restore ./src/TC.GrupoTrinta.BlogNews.Api/TC.GrupoTrinta.BlogNews.Api.csproj
