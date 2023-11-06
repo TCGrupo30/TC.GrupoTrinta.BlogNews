@@ -79,22 +79,18 @@ docker-compose -f docker-compose-integration.yml up
 - https://grupotrinta-fiap.azurewebsites.net/swagger/index.html
 
 
-## Use the [Install-Module](https://learn.microsoft.com/pt-br/powershell/module/powershellget/install-module) cmdlet to install the PowerShell Az module:
+## Use the Azure CLI
 
-
-```PowerShell
-
-Install-Module -Name Az -Repository PSGallery -Force
-```
+- [Azure CLI](https://learn.microsoft.com/pt-br/cli/azure/install-azure-cli-windows?tabs=azure-cli)
 
 Connect Azure Account 
 
 ```PowerShell
 
-Connect-AzAccount
+Az login
 ```
 
-### Create image (Azure Container Registry - CLI)
+### Create image (Azure Container Registry new repository - CLI)
 
 
 ```Azure
