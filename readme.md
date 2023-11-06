@@ -67,3 +67,44 @@ docker run -dp 3000:80 --env ASPNETCORE_ENVIRONMENT=Development --name blognews-
 
 docker-compose -f docker-compose-integration.yml up
 ```
+
+## Swagger (Dev env only)
+---
+
+- http://localhost:3000/swagger/index.html
+
+## Swagger (Publish Azure - Web App Service)
+---
+
+- https://grupotrinta-fiap.azurewebsites.net/swagger/index.html
+
+
+## Use the [Install-Module](https://learn.microsoft.com/pt-br/powershell/module/powershellget/install-module) cmdlet to install the PowerShell Az module:
+---
+
+```PowerShell
+
+Install-Module -Name Az -Repository PSGallery -Force
+```
+
+Connect Azure Account 
+
+```PowerShell
+
+Connect-AzAccount
+```
+
+### Create image (Azure Container Registry - CLI)
+---
+
+```Azure
+
+az acr build --image blognews:v1 --registry acrgrupotrinta --file Dockerfile .
+```
+
+### Create Container (Azure instance - CLI)
+
+```Azure
+
+az container create --name blognews --image acrgrupotrinta.azurecr.io/blognews:v1 --ip-address public -g grupotrinta-fiap -e ASPNETCORE_ENVIRONMENT=Development --ports 80 443
+```
