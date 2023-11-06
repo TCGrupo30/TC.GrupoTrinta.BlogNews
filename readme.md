@@ -1,9 +1,6 @@
 # Diagram
 ---
 
-## Overview
----
-
 ## Architecture
 ---
 
@@ -16,17 +13,13 @@
 - ASP.NET Identity Core
 - Entity Framework Core
 - .NET Core Native DI
-- AutoMapper
-- FluentValidator
 - MediatR
 - Swagger UI
 - SQL Azure
 - xUnit
 - Moq
 - Fluent Assertions
-- Polly
-- Refit
-- DbUp
+- Fixture
 
 ## Design Patterns
 ---
@@ -39,6 +32,7 @@
 - Mediator
 - Specification Pattern
 - Options Pattern
+
 
 ## How to run
 ---
