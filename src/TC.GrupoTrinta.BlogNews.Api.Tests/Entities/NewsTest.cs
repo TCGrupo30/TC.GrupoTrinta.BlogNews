@@ -44,7 +44,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Tests.Entities
             // act
             var news = new News("Maria", data.Content, data.Author, data.PublicationDate);
 
-            // act & assert
+            // assert
             Assert.NotEmpty(news.Title);
         }
 
@@ -58,7 +58,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Tests.Entities
             // act
             var news = new News("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has ss", data.Content, data.Author, data.PublicationDate);
 
-            // act & assert
+            // assert
             Assert.NotEmpty(news.Title);
         }
 
