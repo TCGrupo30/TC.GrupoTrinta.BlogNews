@@ -1,5 +1,5 @@
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 COPY . /app
-WORKDIR /app/src/TC.GrupoTrinta.BlogNews.Api.Tests
+WORKDIR /app/TC.GrupoTrinta.BlogNews.Api.Integration
 RUN dotnet restore
