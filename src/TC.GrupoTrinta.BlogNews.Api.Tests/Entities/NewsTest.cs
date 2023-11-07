@@ -17,21 +17,16 @@ namespace TC.GrupoTrinta.BlogNews.Api.Tests.Entities
             _newsTestFixture = newsTestFixture;
         }
 
-        [Theory(DisplayName = "Avalia se as propriedades da classe operam corretamente para definir e recuperar valores")]
+        [Theory(DisplayName = "Lança uma exceção se a data de publicação for anterior à data atual")]
         [Trait("News", "Validando operações")]
         [InlineData("Faculdade Fiap", "Faculdade de Tecnologia", "Grupo Trinta")]
         public void NewsProperties_SetAndGetProperties_WorkAsExpected(string title, string content, string author)
         {
             // arrange
-            var dateNow = DateTime.Now;
+            var dateNow = DateTime.Now.AddDays(-1);
 
-            // act
-            var news = new News(title, content, author, dateNow);
-
-            // assert
-            Assert.Equal(news.Title, title);
-            Assert.Equal(news.Content, content);
-            Assert.Equal(news.Author, author);
+            // act & assert
+            Assert.Throws<DomainExceptionValidation>(() => new News(title, content, author, dateNow));
         }
 
         [Fact(DisplayName = "Verifica se um título com o tamanho mínimo permitido (5 caracteres) é validado com sucesso")]
@@ -76,7 +71,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Tests.Entities
             Assert.Throws<DomainExceptionValidation>(() => new News(title, content, author, dateNow));
         }
 
-        [Fact(DisplayName = "Avalia se um título com mais de 255 caracteres lança uma exceção de domínio")]
+        [Fact(DisplayName = "Título com mais de 255 caracteres lança uma exceção de domínio")]
         [Trait("News", "Validando operações")]
         public void NewsTitle_LongerThanMaximum_ThrowsDomainException()
         {
