@@ -53,6 +53,8 @@ Unit tests are designed to validate small pieces of code, which can involve doma
 
 - Run the tests: `dotnet test`
 
+![Tests](Docs/img-test.png)
+
 The tests were conceived using the xUnit Test framework, created by James Newkirk, who was also responsible for the development of NUnit v2. Additionally, in conjunction with Fake, a specialized library for providing mock data, we will use it to share data between the test methods and classes in the test project.
 
 The tests cover the following scenarios:
