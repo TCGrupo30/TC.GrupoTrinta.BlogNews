@@ -49,7 +49,24 @@ dotnet watch --project src\TC.GrupoTrinta.BlogNews.Api\TC.GrupoTrinta.BlogNews.A
 
 ### Testing
 
-- Terminal: `dotnet test`
+Unit tests are designed to validate small pieces of code, which can involve domain validations, method validations, or, more broadly, class validations.
+
+- Run the tests: `dotnet test`
+
+The tests were conceived using the xUnit Test framework, created by James Newkirk, who was also responsible for the development of NUnit v2. Additionally, in conjunction with Fake, a specialized library for providing mock data, we will use it to share data between the test methods and classes in the test project.
+
+The tests cover the following scenarios:
+
+1. Confirma se um título com o tamanho máximo permitido (255 caracteres) é validado com sucesso
+2. Lança uma exceção se a data de publicação for anterior à data atual
+3. Testa se um título com menos de 5 caracteres lança uma exceção de domínio
+4. Título com mais de 255 caracteres lança uma exceção de domínio
+5. Verifica se um título com o tamanho mínimo permitido (5 caracteres) é validado com sucesso
+
+#### Packages
+
+* [xUnit](https://xunit.net/)
+* [Bogus](https://github.com/bchavez/Bogus)
 
 ### Docker
 
