@@ -51,7 +51,12 @@ jobs:
             login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
-        - run: |
+            
+        - name: Build Docker test
+          run: docker-compose -f docker-compose-integration.yml -p blognewsapi up
+
+        - name: Push Docker image to Azure Container Registry
+          run: |
             docker build . -t acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}
             docker push acrgrupotrinta.azurecr.io/blognews:v1${{ github.sha }}
             
