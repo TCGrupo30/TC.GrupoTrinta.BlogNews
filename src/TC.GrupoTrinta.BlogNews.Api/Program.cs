@@ -1,4 +1,8 @@
+using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Mvc;
 using TC.GrupoTrinta.BlogNews.Api.Configurations;
+using TC.GrupoTrinta.BlogNews.Domain.SeedWork;
+
 public class Program
 {
     public static async Task Main(string[] args)
@@ -9,6 +13,20 @@ public class Program
             .AddAppConections(builder.Configuration)
             .AddUseCases()
             .AddAndConfigureControllers();
+
+        builder.Services.AddProblemDetails(cfg =>
+        {
+            cfg.IncludeExceptionDetails = (ctx, env) => false;
+
+            cfg.Map<DomainExceptionValidation>(exc => new ProblemDetails()
+            {
+                Title = exc.Message,
+                Detail = exc.Message,
+                Status = StatusCodes.Status422UnprocessableEntity,
+                Type = "https://httpstatuses.io/422"
+            });
+
+        });
 
         builder.Services.AddApplicationInsightsTelemetry();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,6 +44,8 @@ public class Program
         });
 
         var app = builder.Build();
+
+        app.UseProblemDetails();
 
         app.UseDocumentation();
         app.UseHttpsRedirection();

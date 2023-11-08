@@ -25,7 +25,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Integration.ApiTests
                 Title = "Title",
                 Description = "Description",
                 Author = "Author",
-                PublicationDate = DateTime.Now.AddDays(-1)
+                PublicationDate = DateTime.Now
             };
             var payloadJson = JsonConvert.SerializeObject(payload);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, "News");
@@ -49,7 +49,7 @@ namespace TC.GrupoTrinta.BlogNews.Api.Integration.ApiTests
 
             var result = JsonConvert.DeserializeObject<List<NewsModelOutput>>(jsonString);
 
-            Assert.True(result.Count == 1);
+            Assert.True(result?.Count == 1);
         }
     }
 }
